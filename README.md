@@ -1,88 +1,176 @@
-# 🏗 Scaffold-ETH 2
+# EduCred - Blockchain Certificate Verification System
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+A decentralized Web3 application for issuing, managing, and verifying academic certificates on the blockchain. Built to combat diploma fraud and provide instant, tamper-proof credential verification.
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+## Problem Statement
 
-⚙️ Built using NextJS, RainbowKit, Foundry/Hardhat, Wagmi, Viem, and Typescript.
+Traditional paper-based academic certificates are vulnerable to forgery and difficult to verify, creating challenges for:
+- **Employers** struggling to authenticate candidate credentials
+- **Students** losing certificates or facing verification delays
+- **Institutions** dealing with fraudulent claims and verification requests
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+EduCred solves this by leveraging blockchain technology to create permanent, verifiable, and instantly accessible digital certificates.
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+## Features
 
-## Requirements
+### For Universities
+- **Secure Registration**: Self-verification system for educational institutions
+- **Certificate Issuance**: Issue tamper-proof certificates directly to student wallets
+- **Batch Processing**: Support for bulk certificate generation
+- **Institution Dashboard**: Comprehensive management interface
 
-Before you begin, you need to install the following tools:
+### For Students
+- **Wallet Integration**: Connect crypto wallets to access certificates
+- **Certificate Portfolio**: View all earned credentials in one place
+- **QR Code Generation**: Create scannable codes for instant verification
+- **Social Sharing**: Share certificates via WhatsApp, email, and other platforms
+- **IPFS Storage**: Permanent, decentralized storage of certificate documents
 
-- [Node (>= v20.18.3)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+### For Employers
+- **Instant Verification**: Scan QR codes or enter certificate IDs for immediate validation
+- **Blockchain Verification**: Cryptographically verify certificate authenticity
+- **No Registration Required**: Verify certificates without creating accounts
 
-## Quickstart
+## Technology Stack
 
-To get started with Scaffold-ETH 2, follow the steps below:
+- **Frontend**: Next.js 14, TypeScript, Tailwind CSS
+- **Blockchain**: Solidity smart contracts, Hardhat development environment
+- **Web3 Integration**: Wagmi, Viem, RainbowKit
+- **Storage**: IPFS for certificate documents
+- **UI Components**: Custom components with Framer Motion animations
+- **Wallet Support**: MetaMask, WalletConnect, and other popular wallets
 
-1. Install the latest version of Scaffold-ETH 2
-
-```
-npx create-eth@latest
-```
-
-This command will install all the necessary packages and dependencies, so it might take a while.
-
-> [!NOTE]
-> You can also initialize your project with one of our extensions to add specific features or starter-kits. Learn more in our [extensions documentation](https://docs.scaffoldeth.io/extensions/).
-
-2. Run a local network in the first terminal:
-
-```
-yarn chain
-```
-
-This command starts a local Ethereum network that runs on your local machine and can be used for testing and development. Learn how to [customize your network configuration](https://docs.scaffoldeth.io/quick-start/environment#1-initialize-a-local-blockchain).
-
-3. On a second terminal, deploy the test contract:
+## Architecture
 
 ```
-yarn deploy
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   Universities  │    │   Blockchain     │    │    Students     │
+│                 │    │                  │    │                 │
+│ • Register      │───▶│ • Smart Contract │◀───│ • Connect Wallet│
+│ • Issue Certs   │    │ • Certificate    │    │ • View Certs    │
+│ • Manage Portal │    │   Storage        │    │ • Generate QR   │
+└─────────────────┘    │ • Verification   │    └─────────────────┘
+                       └──────────────────┘              │
+                                │                        │
+                       ┌──────────────────┐              │
+                       │      IPFS        │              │
+                       │                  │              │
+                       │ • PDF Storage    │              │
+                       │ • Decentralized  │              │
+                       │ • Permanent      │              │
+                       └──────────────────┘              │
+                                                         │
+                       ┌──────────────────┐              │
+                       │    Employers     │◀─────────────┘
+                       │                  │
+                       │ • Scan QR Codes  │
+                       │ • Verify Certs   │
+                       │ • No Registration│
+                       └──────────────────┘
 ```
 
-This command deploys a test smart contract to the local network. You can find more information about how to customize your contract and deployment script in our [documentation](https://docs.scaffoldeth.io/quick-start/environment#2-deploy-your-smart-contract).
+## Getting Started
 
-4. On a third terminal, start your NextJS app:
+### Prerequisites
 
+- Node.js 18+ and Yarn
+- Git
+- MetaMask browser extension
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/EduCred.git
+   cd EduCred
+   ```
+
+2. **Install dependencies**
+   ```bash
+   yarn install
+   ```
+
+3. **Start local blockchain**
+   ```bash
+   cd packages/hardhat
+   yarn chain
+   ```
+
+4. **Deploy smart contracts** (in a new terminal)
+   ```bash
+   cd packages/hardhat
+   yarn deploy --network localhost
+   ```
+
+5. **Start the frontend** (in a new terminal)
+   ```bash
+   cd packages/nextjs
+   yarn dev
+   ```
+
+6. **Configure MetaMask**
+   - Add Hardhat Local network: RPC URL `http://127.0.0.1:8545`, Chain ID `31337`
+   - Import test accounts using private keys from Hardhat output
+
+### Usage
+
+1. **University Registration** (`/issuer`)
+   - Connect university wallet
+   - Complete institution verification form
+   - Access certificate issuance dashboard
+
+2. **Issue Certificates**
+   - Enter student wallet address
+   - Fill certificate details (name, course, date)
+   - Upload PDF certificate document
+   - Submit blockchain transaction
+
+3. **Student Access** (`/student`)
+   - Connect student wallet
+   - View issued certificates
+   - Generate QR codes for verification
+   - Download PDF certificates from IPFS
+
+4. **Verification** (`/verify`)
+   - Scan QR codes or enter certificate ID
+   - View verification results instantly
+   - Access certificate details and validation status
+
+## Smart Contract
+
+The EduCred smart contract provides:
+- University verification and management
+- Certificate issuance and storage
+- Student certificate retrieval
+- Public verification functions
+
+### Key Functions
+
+```solidity
+function verifyUniversity(address university, string name)
+function issueCertificate(address student, string studentName, string course, string ipfsHash)
+function getStudentCertificates(address student) returns (uint256[])
+function getCertificate(uint256 certificateId) returns (CertificateData)
 ```
-yarn start
-```
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+## Deployment
 
-**What's next**:
+### Local Development
+- Hardhat local network for testing
+- Mock IPFS integration
+- Development-optimized builds
 
-Visit the [What's next section of our docs](https://docs.scaffoldeth.io/quick-start/environment#whats-next) to learn how to:
+### Production Deployment
+- Deploy contracts to Polygon mainnet/testnet
+- Configure production IPFS gateway
+- Set up environment variables for live deployment
 
-- Edit your smart contracts
-- Edit your deployment scripts
-- Customize your frontend
-- Edit the app config
-- Writing and running tests
-- [Setting up external services and API keys](https://docs.scaffoldeth.io/deploying/deploy-smart-contracts#configuration-of-third-party-services-for-production-grade-apps)
+## Acknowledgments
 
-## Documentation
+- Built with Scaffold-ETH 2 framework
+- Inspired by the need for transparent, verifiable educational credentials
+- Community feedback and contributions welcome
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn all the technical details and guides of Scaffold-ETH 2.
+---
 
-To know more about its features, check out our [website](https://scaffoldeth.io).
-
-## Contributing to Scaffold-ETH 2
-
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+**EduCred** - Empowering education through blockchain technology
