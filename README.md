@@ -2,7 +2,12 @@
 
 A decentralized Web3 application for issuing, managing, and verifying academic certificates on the blockchain. Built to combat diploma fraud and provide instant, tamper-proof credential verification.
 
+<img width="1437" height="715" alt="Screenshot 2025-09-26 at 07 42 34" src="https://github.com/user-attachments/assets/31464ecd-69d0-454c-ae02-623b68194cf4" />
+
+
 ## Problem Statement
+
+<img width="1439" height="664" alt="Screenshot 2025-09-26 at 07 43 11" src="https://github.com/user-attachments/assets/d545ffcc-c2d8-4a4d-97fb-86552fe1d9ce" />
 
 Traditional paper-based academic certificates are vulnerable to forgery and difficult to verify, creating challenges for:
 - **Employers** struggling to authenticate candidate credentials
